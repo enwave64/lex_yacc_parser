@@ -42,64 +42,41 @@ assignments:
 assignment:
 	value expression SC
 	{
-		printf("all together\n");
+		printf("good line (assignment)\n");
 	}
 	|
-	value ident
+	value ident SC
 	{
-		printf("refer to 1\n");
+		printf("good line (assignment)\n");
 	}
 	|
 	expression
+	{
+		printf("good line (expression)\n");
+	}
 	;
+
 expression:
 	expression operator
-	{
-		printf("expression+\n"); 
-	}
 	|
 	ident operator
-	{
-		printf("expression\n");
-	}
 	;
 operator:
 	ADD ident
-	{
-		printf("addition\n");
-	}
 	|
 	SUB ident
-	{
-		printf("subtraction\n");
-	}
 	|
 	MUL ident
-	{
-		printf("multiply\n");
-	}
 	|
 	DIV ident
-	{
-		printf("divide\n");
-	}
 	|
 	MOD ident
-	{
-		printf("modulus\n");
-	}
 	;
 value:
 	ident EQ
-	{
-		printf("value equals\n");
-	}
 	;
 ident:
 	ID
-	{
-		printf("this is an ID\n");
-	}
 	;
 	
 %%
