@@ -341,9 +341,6 @@ void yyfree (void *  );
 
 /* Begin user sect3 */
 
-#define yywrap() (/*CONSTCOND*/1)
-#define YY_SKIP_YYWRAP
-
 typedef unsigned char YY_CHAR;
 
 FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;
@@ -378,8 +375,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 5
-#define YY_END_OF_BUFFER 6
+#define YY_NUM_RULES 6
+#define YY_END_OF_BUFFER 7
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -387,10 +384,10 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static yyconst flex_int16_t yy_accept[16] =
+static yyconst flex_int16_t yy_accept[12] =
     {   0,
-        0,    0,    6,    5,    5,    5,    5,    5,    2,    4,
-        3,    1,    0,    0,    0
+        0,    0,    7,    6,    1,    3,    5,    4,    2,    2,
+        0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
@@ -430,30 +427,30 @@ static yyconst YY_CHAR yy_meta[9] =
         1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
-static yyconst flex_uint16_t yy_base[16] =
+static yyconst flex_uint16_t yy_base[12] =
     {   0,
-        0,    0,   18,   19,   11,   10,    8,    7,   19,   19,
-       19,   19,    9,    0,   19
+        0,    0,   10,   14,   14,   14,   14,   14,    5,    0,
+       14
     } ;
 
-static yyconst flex_int16_t yy_def[16] =
+static yyconst flex_int16_t yy_def[12] =
     {   0,
-       15,    1,   15,   15,   15,   15,   15,   15,   15,   15,
-       15,   15,    8,    8,    0
+       11,    1,   11,   11,   11,   11,   11,   11,   11,    9,
+        0
     } ;
 
-static yyconst flex_uint16_t yy_nxt[28] =
+static yyconst flex_uint16_t yy_nxt[23] =
     {   0,
-        4,    4,    5,    4,    6,    7,    8,    8,   12,   11,
-       13,   10,    9,   14,   14,   13,   13,   15,    3,   15,
-       15,   15,   15,   15,   15,   15,   15
+        4,    5,    6,    4,    7,    8,    9,    9,   10,   11,
+       11,   10,   10,    3,   11,   11,   11,   11,   11,   11,
+       11,   11
     } ;
 
-static yyconst flex_int16_t yy_chk[28] =
+static yyconst flex_int16_t yy_chk[23] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    8,    7,
-        8,    6,    5,    8,    8,   13,   13,    3,   15,   15,
-       15,   15,   15,   15,   15,   15,   15
+        1,    1,    1,    1,    1,    1,    1,    1,    9,    3,
+        0,    9,    9,   11,   11,   11,   11,   11,   11,   11,
+       11,   11
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -470,14 +467,11 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "tokens.l"
-/*** Definition section ***/
-#line 4 "tokens.l"
-/* C code to be copied verbatim */
-#include <stdio.h>
+#line 1 "parser.l"
+/* parser.l */
+#line 3 "parser.l"
 #include "y.tab.h"
-/* This tells flex to read only one input file */
-#line 481 "lex.yy.c"
+#line 475 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -695,10 +689,9 @@ YY_DECL
 		}
 
 	{
-#line 18 "tokens.l"
+#line 11 "parser.l"
 
- /*** Rules section ***/
-#line 702 "lex.yy.c"
+#line 695 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -725,13 +718,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 16 )
+				if ( yy_current_state >= 12 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 19 );
+		while ( yy_base[yy_current_state] != 14 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -757,35 +750,35 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 20 "tokens.l"
-{
-			 printf("ID");
-			return (ID);}
+#line 12 "parser.l"
+; /*ignore whitespace*/
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 24 "tokens.l"
-{
-    printf("OP");
-	return OP;
-}
+#line 13 "parser.l"
+{return (ID);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 28 "tokens.l"
-{printf("EQ"); return EQ;}
+#line 14 "parser.l"
+{return OP;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 29 "tokens.l"
-{ printf("SC"); return SC;}
+#line 15 "parser.l"
+{return EQ;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 31 "tokens.l"
+#line 16 "parser.l"
+{return SC;}
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 20 "parser.l"
 ECHO;
 	YY_BREAK
-#line 789 "lex.yy.c"
+#line 782 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1078,7 +1071,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 16 )
+			if ( yy_current_state >= 12 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1106,11 +1099,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 16 )
+		if ( yy_current_state >= 12 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 15);
+	yy_is_jam = (yy_current_state == 11);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1786,7 +1779,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 31 "tokens.l"
-
+#line 20 "parser.l"
 
 

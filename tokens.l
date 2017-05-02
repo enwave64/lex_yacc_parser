@@ -20,7 +20,7 @@ equalsign =
 ({char}|{underscore})+({char}|{underscore}|{digit})*[ ] {
 			 printf("ID");
 			return (ID);}
-
+[\n]   {printf("newline"); }
 {op}[ ] {
     printf("OP");
 	return OP;
