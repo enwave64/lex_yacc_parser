@@ -1,3 +1,4 @@
+/*parser.y */
 %{
 #include <stdio.h>
 %}
@@ -6,19 +7,25 @@
 %token OP
 %token EQ
 %token SC
-%%
-ass : ID EQ exp SC { printf("Assignment\n"); }
-
-exp :  ID OP ID { printf("Expression\n"); }
-    |  exp OP ID 
-
-expbrace : ( ID OP ID SC ) { printf("Expression brace\n");}
-
 
 %%
-#include "lex.yy.c"
+start: expression '\n' {printf("  is an expression\n");return 0;} |
+        assignment '\n' {printf(" is an assignment\n");return 0;}
 
-int main() {
-    yyparse();
-    return 0;
+expression: expression OP ID | ID OP ID;
+assignment: ID EQ expression SC;
+
+%%
+int yywrap(){
+return 1;
+}
+
+yyerror(s)
+char *s;
+{printf("%s, it is not in expression\n", s);
+}
+
+int main(){
+yyparse();
+return 0;
 }
