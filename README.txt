@@ -1,6 +1,6 @@
-Ayessa Medrano - cssc
+Ayessa Medrano - cssc0841
 Elliot Watson - cssc
-Oreoluwa Ogundipe - cssc
+Oreoluwa Ogundipe - cssc0842
 CS 570 Spring 2017
 Assignment #2 Parser
 README.txt
