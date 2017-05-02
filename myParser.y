@@ -6,9 +6,9 @@ extern int yyparse();
 extern FILE * yyin;
 
 
-void yyerror(const char *str)
+void yyerror(char *s)
 {
-	fprintf(stderr,"error: %s\n", str);
+	fprintf(stderr,"error: %s\n", s);
 }
 int yywrap()
 {
@@ -34,6 +34,11 @@ main()
 
 %%
 
+assignments:
+	assignments assignment
+	|
+	assignment
+	;
 assignment:
 	value expression SC
 	{
