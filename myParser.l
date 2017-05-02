@@ -10,9 +10,8 @@
 " * "			return MUL;
 " / "			return DIV;
 " % "			return MOD;
-\n                      /* ignore end of line */;
-[\t]+                  /* ignore whitespace */;
 " ;\n"			return SC;
 " = "			return EQ;
-
+\n                      /* ignore end of line */;
+[\t]+                  /* ignore whitespace */;
 %%  
