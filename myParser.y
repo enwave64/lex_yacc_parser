@@ -45,34 +45,39 @@ assignment:
 		printf("refer to 1\n");
 	}
 	;
-expression: 
-	operator ID
+expression:
+	expression operator
+	{
+		printf("expression+\n"); 
+	}
+	|
+	ident operator
 	{
 		printf("expression\n");
 	}
 	;
 operator:
-	ident ADD
+	ADD ident
 	{
 		printf("addition\n");
 	}
 	|
-	ident SUB
+	SUB ident
 	{
 		printf("subtraction\n");
 	}
 	|
-	ident MUL
+	MUL ident
 	{
 		printf("multiply\n");
 	}
 	|
-	ident DIV
+	DIV ident
 	{
 		printf("divide\n");
 	}
 	|
-	ident MOD
+	MOD ident
 	{
 		printf("modulus\n");
 	}
@@ -90,4 +95,4 @@ ident:
 	}
 	;
 	
-%% 
+%%
