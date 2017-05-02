@@ -12,7 +12,7 @@
 " % "			return MOD;
 \n                      /* ignore end of line */;
 [\t]+                  /* ignore whitespace */;
-" ; "			return SC;
+" ;\n"			return SC;
 " = "			return EQ;
 
 %%  
