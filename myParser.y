@@ -49,6 +49,8 @@ assignment:
 	{
 		printf("refer to 1\n");
 	}
+	|
+	expression
 	;
 expression:
 	expression operator
