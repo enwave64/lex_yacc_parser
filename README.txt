@@ -1,5 +1,5 @@
 Ayessa Medrano - cssc0841
-Elliot Watson - cssc1017
+Elliot Watson - cssc1017 *files will be in this account*
 Oreoluwa Ogundipe - cssc0842
 CS 570 Spring 2017
 Assignment #3 Parser
@@ -30,11 +30,10 @@ Operation instructions:
 Novel/Significant design decisions:
 	Lex and Yacc Compilers
 
-Extra Features:
-
 Known Deficiencies or Bugs:
 	Due to the language of lex and yacc, we were unable to produce the reason for an invalid statement.
-	A blank line will produce an Invalid Statement.
+	Only one error message could be added to the rules in the Yacc file.
+	A blank line will also produce an Invalid Statement.
 
 Lessons Learned:
 	Lex and Yacc Programming and programming style
