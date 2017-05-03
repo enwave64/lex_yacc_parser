@@ -8,7 +8,7 @@ LEX = lex
 YACC = yacc -d
 
 CC = cc
-CFLAGS = -c -Wall
+CFLAGS = -c 
 
 parser: y.tab.o lex.yy.o
 	$(CC) lex.yy.o y.tab.o -o parser
