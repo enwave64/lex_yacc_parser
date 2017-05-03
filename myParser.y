@@ -1,4 +1,5 @@
- %{
+
+%{
 #include <stdio.h>
 extern int yylex();
 extern int yyparse();
@@ -6,6 +7,7 @@ extern FILE *yyin;
 %}
 
 %token ID
+%token DIGIT
 %token OP
 %token EQ
 %token SC
@@ -18,7 +20,9 @@ starts:
 	start
 	;
 start: expression NL 	{printf(" is an expression\n");} |
-        assignment NL {printf(" is an assignment\n");}
+        assignment NL {printf(" is an assignment\n");}	
+	|
+	error{printf(" error\n");}
 	;
 expression: expression OP ID | ID OP ID;
 assignment: ID EQ expression SC;
@@ -29,7 +33,7 @@ int yywrap(){
 }
 void yyerror(char *s)
 {
-	fprintf(stderr, "error: it is not in expression\n", s);
+	fprintf(stderr," ", s, "\n");
 }
 int main(){
 	FILE *myfile = fopen("in.txt","r");
@@ -45,4 +49,4 @@ int main(){
 	fclose(yyin);
 	return 0;
 
-} 
+}
