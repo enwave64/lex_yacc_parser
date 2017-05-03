@@ -19,9 +19,11 @@ Description:
 	read from the file and its validity status will be written to an output file.
 
 Compile Instructions:
-	To compile lex file: lex parser.l
-	To compile yacc file: yacc -d yacc.y
-	To compile c file of lex file and y.tab.c: cc lex.yy.c y.tab.c -o parser
+	Enter 'make'
+	The make file contains the following compilation instructions: 
+		To compile lex file: lex parser.l
+		To compile yacc file: yacc -d yacc.y
+		To compile c file of lex file and y.tab.c: cc lex.yy.c y.tab.c -o parser
 
 Operation instructions:
 	To run: ./parser
