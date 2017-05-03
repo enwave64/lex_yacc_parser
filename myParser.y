@@ -1,21 +1,37 @@
+
 %{
 #include <stdio.h>
-#include <string.h>
 extern int yylex();
 extern int yyparse();
-extern FILE * yyin;
+extern FILE *yyin;
+%}
 
+%token ID
+%token OP
+%token EQ
+%token SC
 
-void yyerror(char *s)
-{
-	fprintf(stderr,"error: %s\n", s);
-}
-int yywrap()
-{
+%%
+starts:
+	starts start
+	|
+	start
+	;
+start: expression {printf("  is an expression\n");} |
+        assignment {printf(" is an assignment\n");}
+	;
+expression: expression OP ID | ID OP ID;
+assignment: ID EQ expression SC;
+
+%%
+int yywrap(){
 	return 1;
 }
-main()
+void yyerror(char *s)
 {
+	fprintf(stderr, "error: it is not in expression\n", s);
+}
+int main(){
 	FILE *myfile = fopen("in.txt","r");
 	if(!myfile)
 	{
@@ -23,60 +39,10 @@ main()
 	}
 	yyin = myfile;
 	do{
+
 		yyparse();
 	}while(!feof(yyin));
 	fclose(yyin);
-	
+	return 0;
+
 }
-
-%}
-%token ID ADD SUB MUL DIV MOD SC EQ
-
-%%
-
-assignments:
-	assignments assignment
-	|
-	assignment
-	;
-assignment:
-	value expression SC
-	{
-		printf("good line (assignment)\n");
-	}
-	|
-	value ident SC
-	{
-		printf("good line (assignment)\n");
-	}
-	|
-	expression
-	{
-		printf("good line (expression)\n");
-	}
-	;
-
-expression:
-	expression operator
-	|
-	ident operator
-	;
-operator:
-	ADD ident
-	|
-	SUB ident
-	|
-	MUL ident
-	|
-	DIV ident
-	|
-	MOD ident
-	;
-value:
-	ident EQ
-	;
-ident:
-	ID
-	;
-	
-%%
