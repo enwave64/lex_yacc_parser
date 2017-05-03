@@ -27,6 +27,8 @@ Novel/Significant design decisions:
 Extra Features:
 
 Known Deficiencies or Bugs:
+	Due to the language of lex and yacc, we were unable to produce the reason of an invalid statement.
+	A blank line will produce an Invalid Statement.
 
 Lessons Learned:
 	Lexical Analysis
