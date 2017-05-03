@@ -1,5 +1,5 @@
 Ayessa Medrano - cssc0841
-Elliot Watson - cssc1017 *files will be in this account*
+Elliott Watson - cssc1017 *files will be in this account*
 Oreoluwa Ogundipe - cssc0842
 CS 570 Spring 2017
 Assignment #3 Parser
