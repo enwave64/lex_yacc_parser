@@ -11,10 +11,10 @@ digit [0-9]
 
 %%
 " " ; /*ignore whitespace*/
-({char}|_)({char}|_|{digit})* {return (ID);}
-{op} {return OP;}
-"=" {return EQ;}
-";" {return SC;}
+({char}|_)({char}|_|{digit})* {ECHO; return (ID);}
+{op} {ECHO; return OP;}
+"=" {ECHO; return EQ;}
+";" {ECHO; return SC;}
 [ \t\n]+	;
 
 %% 
