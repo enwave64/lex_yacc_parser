@@ -1,5 +1,4 @@
-
-%{
+ %{
 #include <stdio.h>
 extern int yylex();
 extern int yyparse();
@@ -10,6 +9,7 @@ extern FILE *yyin;
 %token OP
 %token EQ
 %token SC
+%token NL
 
 %%
 starts:
@@ -17,8 +17,8 @@ starts:
 	|
 	start
 	;
-start: expression {printf("  is an expression\n");} |
-        assignment {printf(" is an assignment\n");}
+start: expression NL 	{printf(" is an expression\n");} |
+        assignment NL {printf(" is an assignment\n");}
 	;
 expression: expression OP ID | ID OP ID;
 assignment: ID EQ expression SC;
@@ -45,4 +45,4 @@ int main(){
 	fclose(yyin);
 	return 0;
 
-}
+} 
