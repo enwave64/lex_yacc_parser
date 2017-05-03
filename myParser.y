@@ -2,7 +2,7 @@
 #include <stdio.h>
 extern int yylex();
 extern int yyparse();
-extern FILE *yyin;
+extern FILE *yyin, *yyout;
 %}
 
 %token DIGIT
@@ -17,9 +17,9 @@ starts:
 	starts start |
     start
 	;
-start: expression NL 	{printf("\tValid Statement\n");} |
-       assignment NL {printf("\tValid Statement\n");}  |
-	   error NL { printf("\tInvalid Statement\n");}
+start: expression NL 	{fputs("\tValid Statement\n", yyout);} |
+       assignment NL {fputs("\tValid Statement\n", yyout);}  |
+	   error NL {fputs("\tInvalid Statement\n", yyout);}
 		;
 expression: expression OP ID | ID OP ID ;
 			
@@ -33,14 +33,17 @@ void yyerror(char *s)
 {}
 int main(){
 	FILE *myfile = fopen("in.txt","r");
+	FILE *outfile = fopen("out.txt", "w");
 	if(!myfile)
 	{
 		printf("invalid file\n");
 	}
 	yyin = myfile;
+	yyout = outfile;
 	do{
 		yyparse();
 	}while(!feof(yyin));
 	fclose(yyin);
+	fclose(yyout);
 	return 0;
 }
