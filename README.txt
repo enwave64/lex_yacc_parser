@@ -9,15 +9,18 @@ Files:...
 
 Description: 
 	This program will analyze the lines of a text file (in.txt) and determine if each line is a valid
-	or invalid statement. Valid statements are assignments and expressions. 
+	or invalid statement. The program will keep reading the text file until each reaches the end of 
+	the file/ 'end of file' marker.
+	Valid statements are assignments and expressions. 
 	Invalid statements are lines that do not follow the syntax of assignments or expressions. The line
 	read from the file and its validity status will be written to an output file(out.txt). 
 	The output file will have the line taken from the text file and a statement right after it 
 	indicating if its valid or invalid.
 	
-BNF:	Assignments and Expressions are composed of identifiers and operations. An Identifier is composed
-	of a combination of chars, digits, and the underscore symbol, but the first position must be 
-	either a char or underscore value. Operations are mathmatical symbols [-+*/%]. 
+BNF:	Assignments and Expressions are composed of identifiers and operations. 
+	An Identifier is composed of a combination of chars, digits, and the underscore symbol, but the
+	first position must be either a char or underscore value. 
+	Operations are mathmatical symbols [-+*/%]. 
 	Assignments are strictly in the form: identifer = expression ;
 	Expressions are in the form: id op id {op id}*  
 
