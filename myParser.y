@@ -1,5 +1,4 @@
-
-%{
+ %{
 #include <stdio.h>
 extern int yylex();
 extern int yyparse();
@@ -19,12 +18,16 @@ starts:
 	|
 	start
 	;
-start: expression NL 	{printf(" is an expression\n");} |
+start: expression NL 	{printf(" is an expression\n");} 
+	|
         assignment NL {printf(" is an assignment\n");}	
 	|
-	error{printf(" error\n");}
+	error{printf(" invalid\n");}
 	;
-expression: expression OP ID | ID OP ID;
+expression: expression OP ID 
+	|
+	ID OP ID
+	;
 assignment: ID EQ expression SC;
 
 %%
@@ -49,4 +52,4 @@ int main(){
 	fclose(yyin);
 	return 0;
 
-}
+} 
