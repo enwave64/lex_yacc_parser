@@ -1,17 +1,20 @@
+
 %{
-#include <stdio.h>
+#include<stdio.h>
 #include "y.tab.h"
 %}
-%%
 
-[a-zA-Z_][a-zA-Z0-9_]*	return ID;
-" + "			return ADD;
-" - "			return SUB;
-" * "			return MUL;
-" / "			return DIV;
-" % "			return MOD;
-" ;\n"			return SC;
-" = "			return EQ;
-\n                      /* ignore end of line */;
-[\t]+                  /* ignore whitespace */;
-%%  
+op [+\-*/%]
+char [a-zA-Z]
+digit [0-9]
+
+
+%%
+" " ; /*ignore whitespace*/
+({char}|_)({char}|_|{digit})* {return (ID);}
+{op} {return OP;}
+"=" {return EQ;}
+";" {return SC;}
+[ \t\n]+	;
+
+%% 
