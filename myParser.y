@@ -1,12 +1,12 @@
- %{
+%{
 #include <stdio.h>
 extern int yylex();
 extern int yyparse();
 extern FILE *yyin;
 %}
 
-%token ID
 %token DIGIT
+%token ID
 %token OP
 %token EQ
 %token SC
@@ -14,30 +14,23 @@ extern FILE *yyin;
 
 %%
 starts:
-	starts start
-	|
-	start
+	starts start |
+    start
 	;
-start: expression NL 	{printf(" is an expression\n");} 
-	|
-        assignment NL {printf(" is an assignment\n");}	
-	|
-	error{printf(" invalid\n");}
-	;
-expression: expression OP ID 
-	|
-	ID OP ID
-	;
-assignment: ID EQ expression SC;
+start: expression NL 	{printf("\tValid Statement\n");} |
+       assignment NL {printf("\tValid Statement\n");}  |
+	   error NL { printf("\tInvalid Statement\n");}
+		;
+expression: expression OP ID | ID OP ID ;
+			
+assignment: ID EQ expression SC	;
 
 %%
 int yywrap(){
 	return 1;
 }
 void yyerror(char *s)
-{
-	fprintf(stderr," ", s, "\n");
-}
+{}
 int main(){
 	FILE *myfile = fopen("in.txt","r");
 	if(!myfile)
@@ -46,10 +39,8 @@ int main(){
 	}
 	yyin = myfile;
 	do{
-
 		yyparse();
 	}while(!feof(yyin));
 	fclose(yyin);
 	return 0;
-
-} 
+}
