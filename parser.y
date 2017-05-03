@@ -1,9 +1,30 @@
 /*parser.y */
 %{
 #include <stdio.h>
-FILE *yyin;
-%}
+#include <string.h>
+extern int yylex();
+extern int yyparse();
+extern FILE * yyin;
 
+void yyerror(char *s){
+    fprintf(stderr,"error: %s\n",s);
+}
+int yywrap(){
+    return 1;
+}
+main(){
+    FILE *myfile = fopen("in.txt","r");
+    if(!myfile){
+        printf("Unable to read\n");
+    }
+    yyin =  myfile;
+    do{
+        yyparse();
+    }while(!feof(yyin));
+    fclose(yyin);
+}
+
+%}
 %token ID
 %token OP
 %token EQ
@@ -17,24 +38,3 @@ expression: expression OP ID | ID OP ID;
 assignment: ID EQ expression SC;
 
 %%
-int yywrap(){
-return 1;
-}
-yyerror(s)
-char *s;
-{printf("%s,Sorry statement not valid\n", s);
-}
-int main(int argc, char *argv[]){
-    if(argc == 2 ){
-        yyin = fopen(argv[1],"r");
-        if(yyin == NULL){
-            fprintf(stderr,"Sorry could no open file : %s\n",argv[1]);
-            return 3;
-        }
-        yyparse();
-    }else{
-        yyin = stdin;
-        yyparse();
-    }
-return 0;
-}

@@ -65,9 +65,31 @@
 #line 2 "parser.y" /* yacc.c:339  */
 
 #include <stdio.h>
-FILE *yyin;
+#include <string.h>
+extern int yylex();
+extern int yyparse();
+extern FILE * yyin;
 
-#line 71 "y.tab.c" /* yacc.c:339  */
+void yyerror(char *s){
+    fprintf(stderr,"error: %s\n",s);
+}
+int yywrap(){
+    return 1;
+}
+main(){
+    FILE *myfile = fopen("in.txt","r");
+    if(!myfile){
+        printf("Unable to read\n");
+    }
+    yyin =  myfile;
+    do{
+        yyparse();
+    }while(!feof(yyin));
+    fclose(yyin);
+}
+
+
+#line 93 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -130,7 +152,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 134 "y.tab.c" /* yacc.c:358  */
+#line 156 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -428,7 +450,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    13,    13,    14,    16,    16,    17
+       0,    34,    34,    35,    37,    37,    38
 };
 #endif
 
@@ -1199,19 +1221,19 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 13 "parser.y" /* yacc.c:1646  */
-    {printf("  is an expression\n");return 0;}
-#line 1205 "y.tab.c" /* yacc.c:1646  */
+#line 34 "parser.y" /* yacc.c:1646  */
+    {printf("  Expression\n");return 0;}
+#line 1227 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 14 "parser.y" /* yacc.c:1646  */
-    {printf(" is an assignment\n");return 0;}
-#line 1211 "y.tab.c" /* yacc.c:1646  */
+#line 35 "parser.y" /* yacc.c:1646  */
+    {printf(" Assignment\n");return 0;}
+#line 1233 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1215 "y.tab.c" /* yacc.c:1646  */
+#line 1237 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1439,26 +1461,4 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 19 "parser.y" /* yacc.c:1906  */
-
-int yywrap(){
-return 1;
-}
-yyerror(s)
-char *s;
-{printf("%s, it is not in expression\n", s);
-}
-int main(int argc, char *argv[]){
-    if(argc == 2 ){
-        yyin = fopen(argv[1],"r");
-        if(yyin == NULL){
-            fprintf(stderr,"Sorry could no open file : %s\n",argv[1]);
-            return 3;
-        }
-        yyparse();
-    }else{
-        yyin = stdin;
-        yyparse();
-    }
-return 0;
-}
+#line 40 "parser.y" /* yacc.c:1906  */
