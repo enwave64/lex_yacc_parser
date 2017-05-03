@@ -20,9 +20,20 @@ Description:
 BNF:	Assignments and Expressions are composed of identifiers and operations. 
 	An Identifier is composed of a combination of chars, digits, and the underscore symbol, but the
 	first position must be either a char or underscore value. 
-	Operations are mathmatical symbols [-+*/%]. 
+	Operations are mathematical symbols [-+*/%]. 
 	Assignments are strictly in the form: identifer = expression ;
-	Expressions are in the form: id op id {op id}*  
+	Expressions are in the EBNF form: id op id {op id}*  
+	Classic BNF representations:
+	
+	lexical:
+	<digit> ::= 0|1|2|3|4|5|6|7|8|9
+	<char> ::= a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+	<id> ::= <char>|_|<id><char>|<id><digit>|<id>_
+	<op> ::= +|-|/|*\%
+	
+	syntactic:
+	<expression> ::= id op id | <expression> op id
+	<assignment> ::= id = <expression> ;
 
 Compile Instructions:
 	Enter 'make'
@@ -30,6 +41,7 @@ Compile Instructions:
 		To compile lex file: lex parser.l
 		To compile yacc file: yacc -d yacc.y
 		To compile c file of lex file and y.tab.c: cc lex.yy.c y.tab.c -o parser
+	Entering the command 'make clean' will clear the directory of the relevant files for a fresh compile
 
 Operation instructions:
 	To run: ./parser
