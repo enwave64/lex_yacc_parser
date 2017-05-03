@@ -5,7 +5,7 @@ CS 570 Spring 2017
 Assignment #3 Parser
 README.txt
 
-Files:...
+Files: README.txt; makefile; myParser.l; myParser.y --> y.tab.c; t.tab.h; lex.yy.c --> parser [in.txt] --> out.txt
 
 Description: 
 	This program will analyze the lines of a text file (in.txt) and determine if each line is a valid
@@ -38,8 +38,8 @@ BNF:	Assignments and Expressions are composed of identifiers and operations.
 Compile Instructions:
 	Enter 'make'
 	The make file contains the following compilation instructions: 
-		To compile lex file: lex parser.l
-		To compile yacc file: yacc -d yacc.y
+		To compile lex file: lex myParser.l
+		To compile yacc file: yacc -d myParser.y
 		To compile c file of lex file and y.tab.c: cc lex.yy.c y.tab.c -o parser
 	Entering the command 'make clean' will clear the directory of the relevant files for a fresh compile
 
