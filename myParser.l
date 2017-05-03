@@ -1,5 +1,4 @@
 
-
 %{
 #include<stdio.h>
 #include "y.tab.h"
@@ -12,7 +11,7 @@ digit [0-9]
 
 %%
 " " 				; /*ignore whitespace*/
-{digit}*			{return DIGIT;}
+{digit}*			{ECHO;return DIGIT;}
 ({char}|_)+({char}|_|{digit})* 	{ECHO; return ID;}
 {op} 				{ECHO; return OP;}
 "=" 				{ECHO; return EQ;}
